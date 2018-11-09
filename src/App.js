@@ -8,6 +8,18 @@ class App extends Component {
     todos: []
   }
 
+  toggleDone = index => {
+    const { todos } = this.state
+    const newTodos = [
+      ...todos.slice(0, index),
+      { ...todos[index], done: !todos[index].done },
+      ...todos.slice(index + 1)
+    ]
+    this.setState({
+      todos: newTodos
+    })
+  }
+
   addTodoArray = event => {
     if (event.key === 'Enter') {
       const newEntry = [
@@ -26,8 +38,14 @@ class App extends Component {
       <div className="App">
         <Input keyupfunction={this.addTodoArray} />
         <div>
-          {this.state.todos.map(todo => (
-            <Todolist key={todo.text} text={todo.text} />
+          {this.state.todos.map((todo, index) => (
+            <Todolist
+              key={todo.text}
+              text={todo.text}
+              onToggle={() => {
+                this.toggleDone(index)
+              }}
+            />
           ))}
         </div>
       </div>
