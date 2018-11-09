@@ -45,6 +45,7 @@ class App extends Component {
               onToggle={() => {
                 this.toggleDone(index)
               }}
+              done={todo.done}
             />
           ))}
         </div>
