@@ -2,10 +2,23 @@ import React, { Component } from 'react'
 import './App.css'
 import Input from './Input'
 import Todolist from './Todolist'
+import Counter from './Counter'
 
 class App extends Component {
   state = {
     todos: []
+  }
+
+  countStuff() {
+    return this.state.todos.filter(item => item.done).length
+  }
+
+  toDelete = index => {
+    const { todos } = this.state
+    const newTodos = [...todos.slice(0, index), ...todos.slice(index + 1)]
+    this.setState({
+      todos: newTodos
+    })
   }
 
   toggleDone = index => {
@@ -15,14 +28,6 @@ class App extends Component {
       { ...todos[index], done: !todos[index].done },
       ...todos.slice(index + 1)
     ]
-    this.setState({
-      todos: newTodos
-    })
-  }
-
-  toDelete = index => {
-    const { todos } = this.state
-    const newTodos = [...todos.slice(0, index), ...todos.slice(index + 1)]
     this.setState({
       todos: newTodos
     })
@@ -44,8 +49,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Counter num={this.countStuff()} />
         <Input keyupfunction={this.addTodoArray} />
-        <div>
+        <ul>
           {this.state.todos.map((todo, index) => (
             <Todolist
               key={todo.text}
@@ -59,7 +65,7 @@ class App extends Component {
               }}
             />
           ))}
-        </div>
+        </ul>
       </div>
     )
   }
