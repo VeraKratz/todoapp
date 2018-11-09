@@ -12,10 +12,23 @@ class App extends Component {
     ]
   }
 
+  addTodoArray = event => {
+    if (event.key === 'Enter') {
+      const newEntry = [
+        { text: event.target.value, done: false },
+        ...this.state.todos
+      ]
+
+      this.setState({
+        todos: newEntry
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <Input />
+        <Input keyupfunction={this.addTodoArray} />
         <div>
           {this.state.todos.map(todo => (
             <Todolist key={todo.text} text={todo.text} />
