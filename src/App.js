@@ -5,11 +5,7 @@ import Todolist from './Todolist'
 
 class App extends Component {
   state = {
-    todos: [
-      { text: 'Geschenke', done: false },
-      { text: 'Deko', done: false },
-      { text: 'Silvester', done: false }
-    ]
+    todos: []
   }
 
   addTodoArray = event => {
@@ -18,10 +14,10 @@ class App extends Component {
         { text: event.target.value, done: false },
         ...this.state.todos
       ]
-
       this.setState({
         todos: newEntry
       })
+      event.target.value = ''
     }
   }
 
