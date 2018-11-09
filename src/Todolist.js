@@ -3,10 +3,14 @@ import './Todolist.css'
 
 class Todolist extends Component {
   render() {
-    const { text, onToggle, done } = this.props
+    const { text, onToggle, done, onDelete } = this.props
     return (
-      <li onClick={onToggle} className={done ? 'Toggle' : ''}>
-        {text}
+      <li>
+        <span onClick={onToggle} className={done ? 'Toggle' : ''}>
+          {' '}
+          {text}
+        </span>
+        <button onClick={onDelete}>X</button>
       </li>
     )
   }

@@ -20,6 +20,14 @@ class App extends Component {
     })
   }
 
+  toDelete = index => {
+    const { todos } = this.state
+    const newTodos = [...todos.slice(0, index), ...todos.slice(index + 1)]
+    this.setState({
+      todos: newTodos
+    })
+  }
+
   addTodoArray = event => {
     if (event.key === 'Enter') {
       const newEntry = [
@@ -46,6 +54,9 @@ class App extends Component {
                 this.toggleDone(index)
               }}
               done={todo.done}
+              onDelete={() => {
+                this.toDelete(index)
+              }}
             />
           ))}
         </div>
