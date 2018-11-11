@@ -7,7 +7,7 @@ body {
 .App {
   min-height: 40vh;
   max-width: 400px;
-  background: lightgray;
+  background: #e0e0e04a; /*#d3d3d324;*/
   padding: 15px;
   border-radius: 20px;
   display: grid;
