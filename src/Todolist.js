@@ -5,7 +5,7 @@ class Todolist extends Component {
   render() {
     const { text, onToggle, done, onDelete } = this.props
     return (
-      <li>
+      <li className="listitem">
         <span onClick={onToggle} className={done ? 'Toggle' : ''}>
           {' '}
           {text}

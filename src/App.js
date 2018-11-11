@@ -48,25 +48,37 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Counter num={this.countStuff()} />
-        <Input keyupfunction={this.addTodoArray} />
-        <ul>
-          {this.state.todos.map((todo, index) => (
-            <Todolist
-              key={todo.text}
-              text={todo.text}
-              onToggle={() => {
-                this.toggleDone(index)
-              }}
-              done={todo.done}
-              onDelete={() => {
-                this.toDelete(index)
-              }}
-            />
-          ))}
-        </ul>
-      </div>
+      <main className="container">
+        <div className="App">
+          <header>
+            <h1>Todolist-App</h1>
+          </header>
+
+          <div className="input">
+            <Input keyupfunction={this.addTodoArray} />
+          </div>
+
+          <ul>
+            {this.state.todos.map((todo, index) => (
+              <Todolist
+                key={todo.text}
+                text={todo.text}
+                onToggle={() => {
+                  this.toggleDone(index)
+                }}
+                done={todo.done}
+                onDelete={() => {
+                  this.toDelete(index)
+                }}
+              />
+            ))}
+          </ul>
+
+          <div className="counter">
+            <Counter num={this.countStuff()} />
+          </div>
+        </div>
+      </main>
     )
   }
 }
